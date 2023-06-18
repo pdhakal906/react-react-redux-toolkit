@@ -2,14 +2,23 @@ import React, { useState } from 'react'
 
 import { useFormik } from 'formik';
 
-import some from '../dummy/sample'
+import every from '../dummy/sample'
 import { useSelector } from 'react-redux';
 
 
 const HomePage = () => {
 
+  // console.log(every.some.name);
+  console.log(every.hello);
+
+
   const dat = useSelector((store) => store);
-  console.log(dat);
+
+
+
+
+  // console.log(dat.todos[0].userId);
+  console.log(dat.todos);
   // initilize empty array
   const [data, setData] = useState([]);
   const oldData = [22, 55, 77];
@@ -34,7 +43,7 @@ const HomePage = () => {
   });
 
   console.log(data);
-  console.log(some);
+
 
   return (
     <div>
@@ -53,6 +62,25 @@ const HomePage = () => {
           })}
 
         </form>
+      </div>
+
+      <div className='border-2 border-black ml-5'>
+        <h1 className='text-5xl font-bold text-center mt-5'>Posts</h1>
+        {
+          dat.todos.map((d, i) => {
+            return (
+              <div key={i} className='p-5'>
+                <h1>User id: {d.userId}</h1>
+                <h1>Post id: {d.id}</h1>
+                <div>
+                  <h1 className='font-bold'>Title: {d.title}</h1>
+                  <p >{d.body}</p>
+                </div>
+
+              </div>
+            )
+          })
+        }
       </div>
 
     </div>
